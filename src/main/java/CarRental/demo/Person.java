@@ -1,8 +1,11 @@
 package CarRental.demo;
 
 import java.util.ArrayList;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
@@ -34,6 +37,7 @@ public class Person {
         return this.name;
     }
 
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
     public ArrayList<Rent> getArrayRent(){
         return this.listRent;
     }
@@ -47,7 +51,6 @@ public class Person {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
 
