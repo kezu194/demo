@@ -1,8 +1,13 @@
 package CarRental.demo;
 
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
 public class Rent {
     private Dates beginRent;
     private Dates endRent;
+    private Long id;
 
     public Rent(){
         this.beginRent = new Dates("01/01/21");
@@ -28,5 +33,15 @@ public class Rent {
     
     public void setEndRent(Dates d){
         this.endRent=d;
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long getId() {
+        return id;
+
+    }
+    public void setId(Long id ){
+        this.id = id;
     }
 }
