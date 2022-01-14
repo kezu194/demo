@@ -2,30 +2,22 @@ package CarRental.demo;
 
 public class Dates {
 
-    String debut;
-    String fin;
+    String date;
 
-    public String getDebut() {
-        return debut;
+    public Dates(String d){
+        this.date=d;
     }
 
-    public void setDebut(String debut) {
-        this.debut = debut;
+    public String getdate() {
+        return date;
     }
 
-    public String getFin() {
-        return fin;
-    }
-
-    public void setFin(String fin) {
-        this.fin = fin;
+    public void setdate(String date) {
+        this.date = date;
     }
 
     @Override
     public String toString() {
-        return "Dates{" +
-                "debut='" + debut + '\'' +
-                ", fin='" + fin + '\'' +
-                '}';
+        return "date='" + date ;
     }
 }

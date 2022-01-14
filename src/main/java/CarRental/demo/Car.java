@@ -1,79 +1,45 @@
 package CarRental.demo;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
 
 @Entity
-public class Car {
+public class Car extends Vehicule{
 	
-	private String plateNumber;
-	private String brand;
-	private int price;
-	private Dates dates;
-	private boolean rented;
+	private int numberOfSeats;
 	
 	public Car() {
 		super();
+        this.numberOfSeats = 4;
 	}
 	
-	public Car(String plateNumber, String brand, int price) {
+	public Car(int numberOfSeats) {
 		super();
-		this.plateNumber = plateNumber;
-		this.brand = brand;
-		this.price = price;
+		this.numberOfSeats = numberOfSeats;
 	}
 
-	@Id
-	public String getPlateNumber() {
-		return plateNumber;
+    public Car(String plate, int numberOfSeats) {
+		super(plate);
+		this.numberOfSeats = numberOfSeats;
+	}
+
+    public Car(String plate) {
+		super(plate);
+		this.numberOfSeats = 4;
+	}
+
+	public int getnumberOfSeats() {
+		return numberOfSeats;
 	}
 	
-	public void setPlateNumber(String plateNumber) {
-		this.plateNumber = plateNumber;
-	}
-	
-	public String getBrand() {
-		return brand;
-	}
-
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
-
-	public int getPrice() {
-		return price;
-	}
-	
-	public void setPrice(int price) {
-		this.price = price;
-	}
-
-	@Transient
-	public Dates getDates() {
-		return dates;
-	}
-
-	public void setDates(Dates dates) {
-		this.dates = dates;
-	}
-
-	public boolean isRented() {
-		return rented;
-	}
-
-	public void setRented(boolean rented) {
-		this.rented = rented;
+	public void setnumberOfSeats(int numberOfSeats) {
+		this.numberOfSeats = numberOfSeats;
 	}
 
 	@Override
 	public String toString() {
 		return "Car{" +
-				"plateNumber='" + plateNumber + '\'' +
-				", brand='" + brand + '\'' +
-				", price=" + price +
-				", dates=" + dates +
-				", rented=" + rented +
+				"plateNumber='" + this.getPlateNumber() + '\'' +
+				", numberOfSeats=" + numberOfSeats +
 				'}';
 	}
 }

@@ -13,31 +13,31 @@ public class CarRentalService {
 	
 	// private List<Car> cars = new ArrayList<Car>();
 	
-	CarRepository carRepository;
+	VehiculeRepository vehiculeRepository;
 	
 	@Autowired
-	public CarRentalService(CarRepository carRepository) {
-		this.carRepository = carRepository;
-		Car car = new Car("11AA22", "Ferrari", 1000);
-		carRepository.save(car);
-		car = new Car("33BB44", "Porshe", 2222);
-		carRepository.save(car);
+	public CarRentalService(VehiculeRepository vehiculeRepository) {
+		this.vehiculeRepository = vehiculeRepository;
+		Car car = new Car("11AA22", 1000);
+		vehiculeRepository.save(car);
+		Van van = new Van("33BB44", 2222);
+		vehiculeRepository.save(van);
 	}
 	
 	@GetMapping("/cars")
-	public List<Car> getListOfCars(){
-		return carRepository.findAll(); // <=> select * from Car
+	public List<Vehicule> getListOfCars(){
+		return vehiculeRepository.findAll(); // <=> select * from Car
 	}
 	
 	@PostMapping("/cars")
 	public void addCar(@RequestBody Car car) throws Exception{
 		System.out.println(car);
-		carRepository.findAll().add(car);
+		vehiculeRepository.findAll().add(car);
 	}
 
 	@GetMapping("/cars/{plateNumber}")
-	public Car getCar(@PathVariable(value = "plateNumber") String plateNumber){
-		for(Car car: carRepository.findAll()){
+	public Vehicule getCar(@PathVariable(value = "plateNumber") String plateNumber){
+		for(Vehicule car: vehiculeRepository.findAll()){
 			if(car.getPlateNumber().equals(plateNumber)){
 				return car;
 			}
@@ -48,10 +48,8 @@ public class CarRentalService {
 	@PutMapping("/cars/{plateNumber}")
 	public void rent(@PathVariable("plateNumber") String plateNumber, @RequestParam(value="rent",
 			required = true)boolean rent, @RequestBody Dates dates){
-		for(Car car: carRepository.findAll()){
+		for(Vehicule car: vehiculeRepository.findAll()){
 			if(car.getPlateNumber().equals(plateNumber)){
-				car.setDates(dates);
-				car.setRented(true);
 			}
 		}
 	}
