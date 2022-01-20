@@ -5,16 +5,19 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.util.Date;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 @Entity
 public class Rent {
 
     long id;
     Person person;
-    Date beginRent;
-    Date endRent;
+    Dates beginRent;
+    Dates endRent;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getId() {
         return id;
     }
@@ -23,19 +26,19 @@ public class Rent {
         this.id = id;
     }
 
-    public Date getBeginRent() {
+    public Dates getBeginRent() {
         return beginRent;
     }
 
-    public void setBeginRent(Date date) {
+    public void setBeginRent(Dates date) {
         this.beginRent = date;
     }
 
-    public Date getEndRent() {
+    public Dates getEndRent() {
         return endRent;
     }
 
-    public void setEndRent(Date date) {
+    public void setEndRent(Dates date) {
         this.endRent = date;
     }
 
@@ -47,5 +50,9 @@ public class Rent {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public String toString(){
+        return this.getPerson()+" , d'ID : "+this.person.getId()+" a louer un véhicule du :" +this.getBeginRent()+" au "+this.getEndRent();
     }
 }
