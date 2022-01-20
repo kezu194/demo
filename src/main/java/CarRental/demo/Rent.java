@@ -1,47 +1,51 @@
 package CarRental.demo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.ManyToOne;
+import java.util.Date;
 
+@Entity
 public class Rent {
-    private Dates beginRent;
-    private Dates endRent;
-    private Long id;
 
-    public Rent(){
-        this.beginRent = new Dates("01/01/21");
-        this.endRent = new Dates("31/12/21");
-    }
-
-    public Rent(String begin, String end){
-        this.beginRent = new Dates(begin);
-        this.endRent = new Dates(end);
-    }
-
-    public Dates getBeginRent(){
-        return this.beginRent;
-    }
-
-    public Dates getEndRent(){
-        return this.endRent;
-    }
-
-    public void setBeginRent(Dates d){
-        this.beginRent=d;
-    }
-    
-    public void setEndRent(Dates d){
-        this.endRent=d;
-    }
+    long id;
+    Person person;
+    Date beginRent;
+    Date endRent;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getId() {
+    public long getId() {
         return id;
-
     }
-    public void setId(Long id ){
+
+    public void setId(long id) {
         this.id = id;
+    }
+
+    public Date getBeginRent() {
+        return beginRent;
+    }
+
+    public void setBeginRent(Date date) {
+        this.beginRent = date;
+    }
+
+    public Date getEndRent() {
+        return endRent;
+    }
+
+    public void setEndRent(Date date) {
+        this.endRent = date;
+    }
+
+    @ManyToOne
+    @JsonIgnore
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 }

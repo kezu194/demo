@@ -3,26 +3,29 @@ package CarRental.demo;
 import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
 
 @Entity
 public abstract class Vehicule {
     private String plateNumber;
-    private ArrayList<Rent> arrayRent;
+    private List<Rent> rents = new ArrayList<Rent>();
 
     public Vehicule(){
         this.plateNumber="000000";
-        this.arrayRent = new ArrayList<Rent>();
+        this.rents = new ArrayList<Rent>();
     }
     public Vehicule(String plate){
         this.plateNumber=plate;
-        this.arrayRent = new ArrayList<Rent>();
+        this.rents = new ArrayList<Rent>();
     }
-    public Vehicule(ArrayList<Rent> list){
-        this.arrayRent = list;
+    public Vehicule(List<Rent> list){
+        this.rents = list;
         this.plateNumber="000000";
     }
-    public Vehicule(String plate, ArrayList<Rent> list){
-        this.arrayRent = list;
+    public Vehicule(String plate, List<Rent> list){
+        this.rents = list;
         this.plateNumber = plate;
     }
 
@@ -30,13 +33,15 @@ public abstract class Vehicule {
     public String getPlateNumber(){
         return this.plateNumber;
     }
-    public ArrayList<Rent> getArrayRent(){
-        return this.arrayRent;
+
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    public List<Rent> getrents(){
+        return this.rents;
     }
     public void setPlateNumber(String plate){
         this.plateNumber=plate;
     }
-    public void setArrayRent(ArrayList<Rent> array){
-        this.arrayRent = array;
+    public void setRents(List<Rent> array){
+        this.rents = array;
     }
 }

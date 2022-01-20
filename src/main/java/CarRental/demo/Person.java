@@ -2,60 +2,42 @@ package CarRental.demo;
 
 import java.util.ArrayList;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 
 @Entity
 public class Person {
-    private String name;
-    private ArrayList<Rent> listRent;
-    private Long id;
 
-    public Person(){
-        this.name = "Default";
-        this.listRent = new ArrayList<Rent>();
-    }
-    public Person(String n){
-        this.name = n;
-        this.listRent = new ArrayList<Rent>();
-    }
-    public Person(ArrayList<Rent> list){
-        this.listRent = list;
-        this.name = "Default";
+    long id;
+    String name;
+    List<Rent> rents = new ArrayList<Rent>();
 
-    }
-    public Person(ArrayList<Rent> list, String n){
-        this.name = n;
-        this.listRent = list;
+    @Id
+    public long getId() {
+        return id;
     }
 
-    public String getName(){
-        return this.name;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
-    public ArrayList<Rent> getArrayRent(){
-        return this.listRent;
+    public List<Rent> getRents() {
+        return rents;
     }
 
-    public void setName(String n){
-        this.name = n;
-    }
-
-    public void setArrayRent(ArrayList<Rent> array){
-        this.listRent = array;
-    }
-
-    @Id
-    public Long getId() {
-        return id;
-
-    }
-    public void setId(Long id ){
-        this.id = id;
+    public void setRents(List<Rent> rents) {
+        this.rents = rents;
     }
 }
