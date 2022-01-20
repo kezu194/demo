@@ -1,4 +1,4 @@
-package CarRental.demo;
+package CarRental.demo.Object;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Entity;

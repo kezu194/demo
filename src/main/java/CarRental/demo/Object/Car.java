@@ -1,4 +1,4 @@
-package CarRental.demo;
+package CarRental.demo.Object;
 
 import javax.persistence.Entity;
 

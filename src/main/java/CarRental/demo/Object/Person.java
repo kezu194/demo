@@ -1,4 +1,4 @@
-package CarRental.demo;
+package CarRental.demo.Object;
 
 import java.util.ArrayList;
 
@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 @Entity
 public class Person {
@@ -16,6 +18,7 @@ public class Person {
     List<Rent> rents = new ArrayList<Rent>();
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getId() {
         return id;
     }
