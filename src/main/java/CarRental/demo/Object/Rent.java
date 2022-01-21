@@ -1,10 +1,12 @@
 package CarRental.demo.Object;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import java.util.Date;
+import javax.persistence.OneToOne;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
@@ -13,8 +15,8 @@ public class Rent {
 
     long id;
     Person person;
-    Dates beginRent;
-    Dates endRent;
+    Dates date;
+    Vehicule vehicule;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,22 +28,14 @@ public class Rent {
         this.id = id;
     }
 
-    public Dates getBeginRent() {
-        return beginRent;
+    @Embedded
+    public Dates getDate() {
+        return date;
     }
 
-    public void setBeginRent(Dates date) {
-        this.beginRent = date;
+    public void setDate(Dates date) {
+        this.date = date;
     }
-
-    public Dates getEndRent() {
-        return endRent;
-    }
-
-    public void setEndRent(Dates date) {
-        this.endRent = date;
-    }
-
     @ManyToOne
     @JsonIgnore
     public Person getPerson() {
@@ -52,7 +46,16 @@ public class Rent {
         this.person = person;
     }
 
+    @OneToOne
+    public Vehicule getVehicule() {
+        return this.vehicule;
+    }
+
+    public void setVehicule(Vehicule vehicule) {
+        this.vehicule = vehicule;
+    }
+
     public String toString(){
-        return this.getPerson()+" , d'ID : "+this.person.getId()+" a louer un véhicule du :" +this.getBeginRent()+" au "+this.getEndRent();
+        return this.getPerson()+" , d'ID : "+this.person.getId()+" a louer un véhicule du :" +this.getDate();
     }
 }

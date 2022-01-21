@@ -34,7 +34,7 @@ public class CarRentalService {
 	}
 	
 	@PostMapping("/cars")
-	public void addCar(@RequestBody Car car) throws Exception{
+	public void addCar(@RequestBody Vehicule car) throws Exception{
 		System.out.println(car);
 		vehiculeRepository.findAll().add(car);
 	}

@@ -1,34 +1,49 @@
 package CarRental.demo.Service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
 
 import CarRental.demo.Object.Dates;
+import CarRental.demo.Object.Person;
 import CarRental.demo.Object.Rent;
+import CarRental.demo.Object.Car;
+import CarRental.demo.Object.Van;
 import CarRental.demo.Repository.RentRepository;
+import CarRental.demo.Repository.PersonRepository;
+import CarRental.demo.Repository.VehiculeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
 public class RentService {
 	
-	// private List<Car> cars = new ArrayList<Car>();
-	
 	RentRepository rentRepository;
+	PersonRepository personRepository;
+	VehiculeRepository vehiculeRepository;
 	
 	@Autowired
-	public RentService(RentRepository rentRepository) {
-        Rent rent1 = new Rent();
-        rent1.setBeginRent(new Dates("01/01/22"));
-        rent1.setEndRent(new Dates("01/02/22"));
-		rentRepository.save(rent1);
+	public RentService(RentRepository rentRepository, VehiculeRepository vehicuRepository, PersonRepository personRepository) {
+		this.rentRepository = rentRepository;
+		this.vehiculeRepository = vehicuRepository;
+		this.personRepository = personRepository;
+		
+		Car car = new Car("55CC66", 1500);
+		vehiculeRepository.save(car);
+
+		Person benjamin = new Person("Benjamin");
+		personRepository.save(benjamin);
+		
+        Rent rent = new Rent();
+		rent.setDate(new Dates("01/01/22","01/02/22"));
+		rent.setPerson(benjamin);
+		rent.setVehicule(car);
+		rentRepository.save(rent);
 	}
 	
 	@GetMapping("/rents")
 	public List<Rent> getListOfRents(){
-		return rentRepository.findAll(); // <=> select * from Car
+		return rentRepository.findAll(); 
 	}
 	
 	@PostMapping("/rents")

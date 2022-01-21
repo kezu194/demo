@@ -17,6 +17,13 @@ public class Person {
     String name;
     List<Rent> rents = new ArrayList<Rent>();
 
+    public Person() {
+    }
+    
+    public Person(String name) {
+        this.name = name;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public long getId() {
