@@ -13,7 +13,7 @@ import javax.persistence.GenerationType;
 @Entity
 public class Rent {
 
-    long id;
+    long id_rent;
     Person person;
     Dates date;
     Vehicule vehicule;
@@ -21,11 +21,11 @@ public class Rent {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public long getId() {
-        return id;
+        return id_rent;
     }
 
     public void setId(long id) {
-        this.id = id;
+        this.id_rent = id;
     }
 
     @Embedded

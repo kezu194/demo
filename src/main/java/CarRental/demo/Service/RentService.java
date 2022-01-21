@@ -30,15 +30,23 @@ public class RentService {
 		
 		Car car = new Car("55CC66", 1500);
 		vehiculeRepository.save(car);
+		Van van = new Van("77DD88", 2000);
+		vehicuRepository.save(van);
 
 		Person benjamin = new Person("Benjamin");
 		personRepository.save(benjamin);
 		
-        Rent rent = new Rent();
-		rent.setDate(new Dates("01/01/22","01/02/22"));
-		rent.setPerson(benjamin);
-		rent.setVehicule(car);
-		rentRepository.save(rent);
+        Rent rent1 = new Rent();
+		rent1.setDate(new Dates("01/01/22","01/02/22"));
+		rent1.setPerson(benjamin);
+		rent1.setVehicule(car);
+		rentRepository.save(rent1);
+
+		Rent rent2 = new Rent();
+		rent2.setDate(new Dates("15/01/22", "01/06/22"));
+		rent2.setPerson(benjamin);
+		rent2.setVehicule(van);
+		rentRepository.save(rent2);
 	}
 	
 	@GetMapping("/rents")
